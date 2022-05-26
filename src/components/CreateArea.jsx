@@ -16,14 +16,14 @@ function CreateArea(props) {
   }
   return (
     <div>
-      <form onSubmit={(e) => {
+      <form className="create-note">
+        {focus && <input onChange={onChange} name="title" placeholder="Title" value={input.title} />}
+        <textarea onClick={expandInput} onChange={onChange} name="content" placeholder="Take a note..." rows={focus ? 3 : 1} value={input.content} />
+        <Zoom onClick={(e) => {
           props.addNote(input);
           setInput(emptyNote);
           e.preventDefault();
-          }} className="create-note">
-        {focus && <input onChange={onChange} name="title" placeholder="Title" value={input.title} />}
-        <textarea onClick={expandInput} onChange={onChange} name="content" placeholder="Take a note..." rows={focus ? 3 : 1} value={input.content} />
-        <Zoom in={focus}>
+          }} in={focus}>
           <Fab><FaPlus /></Fab>
         </Zoom>
       </form>
